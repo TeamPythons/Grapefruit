@@ -27,6 +27,7 @@ public class CRUD {
     }
     public Boolean create(String filePath, String Product_ID, String Quantity, String Wholesale_Cost, String Sale_Price, String Supplier_ID) throws IOException{
         //Creates the fileWriter and adds a line to the end of the document
+        //V2
         FileWriter csvWriter = new FileWriter(filePath,true);
         csvWriter.append(Product_ID + "," + Quantity + "," + Wholesale_Cost +"," + Sale_Price + "," + Supplier_ID + "\n");
         csvWriter.flush();
