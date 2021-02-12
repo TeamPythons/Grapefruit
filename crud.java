@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -24,9 +25,14 @@ public class CRUD {
             e.printStackTrace();
         }
     }
-    public String create(String filePath){
-        String returnValue = "";
-        return returnValue;
+    public Boolean create(String filePath, String Product_ID, String Quantity, String Wholesale_Cost, String Sale_Price, String Supplier_ID) throws IOException{
+        //Creates the fileWriter and adds a line to the end of the document
+        //V2
+        FileWriter csvWriter = new FileWriter(filePath,true);
+        csvWriter.append(Product_ID + "," + Quantity + "," + Wholesale_Cost +"," + Sale_Price + "," + Supplier_ID + "\n");
+        csvWriter.flush();
+        csvWriter.close();
+        return true;
     }
     public String read(String filePath) throws IOException {
         //Initalize the returnValue
