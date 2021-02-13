@@ -1,8 +1,8 @@
-import java.io.BufferedReader;
-import java.io.FileWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class CRUD {
@@ -35,8 +35,13 @@ public class CRUD {
         return true;
     }
     public String read(String filePath) throws IOException {
-        //Initalize the returnValue
-        String returnValue = "";
+        //Initalize the list for return values
+        List<String> listReturnValues = new ArrayList<String>(5);
+        List<Integer> listLineNumbers = new ArrayList<Integer>(5);
+        List<String> listFullValue = new ArrayList<String>(5);
+
+        //Initalize the lineNumber value
+        int lineNumber = 1;
 
         //Initalize a Scanner
         BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
@@ -57,18 +62,22 @@ public class CRUD {
         String search = sc.nextLine();
 
         //Loops and searches for Search Info in the column chosen
-        while((line = csvReader.readLine()) != null){
+        while ((line = csvReader.readLine()) != null) {
             values = line.split(",");
-            if (values[column].equals(search)){
-                returnValue = line;
-                break;
+            if (values[column].equals(search)) {
+                listReturnValues.add(values[column]);
+                listLineNumbers.add(lineNumber);
+                listFullValue.add(line);
             }
+            lineNumber++;
         }
         csvReader.close();
 
         // Return returnValue
-        System.out.println(returnValue);
-        return returnValue;
+        System.out.println(listReturnValues.toString());
+        System.out.println(listLineNumbers.toString());
+        System.out.println(listFullValue);
+        return line;
     }
 
     public String update(String filePath){
