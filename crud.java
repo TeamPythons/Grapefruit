@@ -3,91 +3,89 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
-public class CRUD {
-    String[] values;
-    String line = "";
-    public String filePath = "";
+public class crud {
+    List<String> productID = new ArrayList<String>();
+    List<String> quantity = new ArrayList<String>();
+    List<String> wholesaleCost = new ArrayList<String>();
+    List<String> salePrice = new ArrayList<String>();
+    List<String> supplierID = new ArrayList<String>();
 
-
-    public CRUD(String filePath) throws FileNotFoundException {
-        this.filePath = filePath;
-        BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
-        try{
-            while((line = csvReader.readLine()) != null){
-                values = line.split(",");
-                System.out.println(values[1]);
-            }
-            csvReader.close();
-        }
-        catch(IOException e){
-            e.printStackTrace();
-        }
+    public void printIndex(int index){
+        System.out.println(productID.get(index)+", "+quantity.get(index)+", "+wholesaleCost.get(index)+", "+salePrice.get(index)+", "+supplierID.get(index));
     }
-    public Boolean create(String filePath, String Product_ID, String Quantity, String Wholesale_Cost, String Sale_Price, String Supplier_ID) throws IOException{
-        //Creates the fileWriter and adds a line to the end of the document
-        //V2
-        FileWriter csvWriter = new FileWriter(filePath,true);
-        csvWriter.append(Product_ID + "," + Quantity + "," + Wholesale_Cost +"," + Sale_Price + "," + Supplier_ID + "\n");
-        csvWriter.flush();
-        csvWriter.close();
-        return true;
-    }
-    public String read(String filePath) throws IOException {
-        //Initalize the list for return values
-        List<String> listReturnValues = new ArrayList<String>(5);
-        List<Integer> listLineNumbers = new ArrayList<Integer>(5);
-        List<String> listFullValue = new ArrayList<String>(5);
 
-        //Initalize the lineNumber value
-        int lineNumber = 1;
-
-        //Initalize a Scanner
+    public void load(String filePath, Boolean overwrite) throws IOException{
+        //Load a file from a CSV document into the ArrayLists
         BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
-
-        //Ask which column they want to read from
-        System.out.println("From what column do you want to pull info from?");
-        System.out.println("Product_ID(0), Quantity(1), Wholesale_Cost(2), Sale_Price(3), Supplier_ID(4)");
-
-        //Start Scanner
-        Scanner sc = new Scanner(System.in);
-        //Ask for column #
-        int column = sc.nextInt();
-        //Reading the leftover new line
-        sc.nextLine();
-
-        //Ask for search info
-        System.out.println("Enter info for search");
-        String search = sc.nextLine();
-
-        //Loops and searches for Search Info in the column chosen
+        String line;
+        String[] values;
+        if(overwrite){
+            productID.clear();
+            quantity.clear();
+            wholesaleCost.clear();
+            salePrice.clear();
+            supplierID.clear();
+        }
         while ((line = csvReader.readLine()) != null) {
             values = line.split(",");
-            if (values[column].equals(search)) {
-                listReturnValues.add(values[column]);
-                listLineNumbers.add(lineNumber);
-                listFullValue.add(line);
-            }
-            lineNumber++;
+            productID.add(values[0]);
+            quantity.add(values[1]);
+            wholesaleCost.add(values[2]);
+            salePrice.add(values[3]);
+            supplierID.add(values[4]);
         }
         csvReader.close();
-
-        // Return returnValue
-        System.out.println(listReturnValues.toString());
-        System.out.println(listLineNumbers.toString());
-        System.out.println(listFullValue);
-        return line;
     }
 
-    public String update(String filePath){
-        String returnValue = "";
-        return returnValue;
+    public void save(String filePath) throws IOException{
+        //Write the contents of each ArrayList into a new csv file
+        FileWriter csvWriter = new FileWriter(filePath,true);
+        String wholeDocument = "";
+        for( int i = 0; i < productID.size(); i++){
+            wholeDocument += productID.get(i)+","+quantity.get(i)+","+wholesaleCost.get(i)+","+salePrice.get(i)+","+supplierID.get(i)+"/n";
+        }
+        csvWriter.write(wholeDocument);
+        csvWriter.flush();
+        csvWriter.close();
     }
 
-    public String delete(String filePath){
-        String returnValue = "";
-        return returnValue;
+    public void delete(int index){
+        productID.remove(index);
+        quantity.remove(index);
+        wholesaleCost.remove(index);
+        salePrice.remove(index);
+        supplierID.remove(index);
+    }
+
+    public List<Integer> search(int column, String searchWord){
+        List<Integer> searchResults = new ArrayList<Integer>();
+        String dataToCompare = "";
+        //Search returns the indexes of the entries when found
+        for(int i = 0; i < productID.size(); i++){
+            switch(column){
+                case 0:
+                    dataToCompare = productID.get(i);
+                break;
+                case 1:
+                    dataToCompare = quantity.get(i);
+                break;
+                case 2:
+                    dataToCompare = wholesaleCost.get(i);
+                break;
+                case 3:
+                    dataToCompare = salePrice.get(i);
+                break;
+                default:
+                    dataToCompare = supplierID.get(i);
+                break;
+            }
+            if(dataToCompare == searchWord){
+                searchResults.add(i);
+            }
+        }
+
+        return searchResults;
     }
 
 }
