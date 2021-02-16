@@ -83,7 +83,6 @@ public class CRUD {
 
     private Boolean udHelper(String filePath, int lineToChange, Boolean update, String newline) throws IOException{
         //Helper function that can either Update (when update = true) OR Delete (when update = false)
-        System.out.println("Helper function invoked");
         BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
         int thisLine = 1;
         Boolean returnValue = false;
@@ -98,11 +97,11 @@ public class CRUD {
                 returnValue = true;
                 //if update is set to true, add the new line to the file
                 if(update){
-                    System.out.println("Updating line" + String.valueOf(thisLine));
                     wholeDocument += newline + "\n";
                 }
                 //if update is set to false, do nothing (just delete the existing line)
             }
+           thisLine ++;
         }
         csvReader.close();
 
