@@ -15,6 +15,57 @@ public class crud {
         System.out.println(productID.get(index)+", "+quantity.get(index)+", "+wholesaleCost.get(index)+", "+salePrice.get(index)+", "+supplierID.get(index));
     }
 
+    public int getSize(){
+        return productID.size();
+    }
+
+    public void replace(int category, int index, String newData){
+        switch(category){
+            case 0:
+                productID.set(index, newData);
+            break;
+            case 1:
+                quantity.set(index, newData);
+            break;
+            case 2:
+                wholesaleCost.set(index, newData);
+            break;
+            case 3:
+                salePrice.set(index, newData);
+            break;
+            case 4:
+                supplierID.set(index, newData);
+            break;
+            default:
+            break;
+        }
+    }
+
+    public String getValue(int category, int row){
+        String result = "";
+            switch(category){
+                case 0:
+                    result = productID.get(row);
+                break;
+                case 1:
+                    result = quantity.get(row);
+                break;
+                case 2:
+                    result = wholesaleCost.get(row);
+                break;
+                case 3:
+                    result = salePrice.get(row);
+                break;
+                case 4:
+                    result = supplierID.get(row);
+                break;
+                default:
+                    result = "";
+                break;
+            }
+        return result;
+    }
+
     public void load(String filePath, Boolean overwrite) throws IOException{
         //Load a file from a CSV document into the ArrayLists
         BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
@@ -40,10 +91,10 @@ public class crud {
 
     public void save(String filePath) throws IOException{
         //Write the contents of each ArrayList into a new csv file
-        FileWriter csvWriter = new FileWriter(filePath,true);
+        FileWriter csvWriter = new FileWriter(filePath,false);
         String wholeDocument = "";
         for( int i = 0; i < productID.size(); i++){
-            wholeDocument += productID.get(i)+","+quantity.get(i)+","+wholesaleCost.get(i)+","+salePrice.get(i)+","+supplierID.get(i)+"/n";
+            wholeDocument += productID.get(i)+","+quantity.get(i)+","+wholesaleCost.get(i)+","+salePrice.get(i)+","+supplierID.get(i)+"\n";
         }
         csvWriter.write(wholeDocument);
         csvWriter.flush();
@@ -80,7 +131,7 @@ public class crud {
                     dataToCompare = supplierID.get(i);
                 break;
             }
-            if(dataToCompare == searchWord){
+            if(dataToCompare.equals(searchWord)){
                 searchResults.add(i);
             }
         }
