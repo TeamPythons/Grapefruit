@@ -87,7 +87,11 @@ public class crud {
             supplierID.add(values[4]);
         }
         csvReader.close();
+<<<<<<< HEAD
     }
+=======
+        sc.close();
+>>>>>>> main
 
     public void save(String filePath) throws IOException{
         //Write the contents of each ArrayList into a new csv file
@@ -101,6 +105,7 @@ public class crud {
         csvWriter.close();
     }
 
+<<<<<<< HEAD
     public void delete(int index){
         productID.remove(index);
         quantity.remove(index);
@@ -137,6 +142,56 @@ public class crud {
         }
 
         return searchResults;
+=======
+    private Boolean udHelper(String filePath, int lineToChange, Boolean update, String newline) throws IOException{
+        //Helper function that can either Update (when update = true) OR Delete (when update = false)
+        BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
+        int thisLine = 1;
+        Boolean returnValue = false;
+        String row;
+        String wholeDocument = "";
+
+        //Go through the file line by line and add the lines to wholeDocument, except for the deleted line
+        while ((row = csvReader.readLine()) != null) {
+            if(thisLine != lineToChange){
+                wholeDocument += row + "\n";
+            }else{
+                returnValue = true;
+                //if update is set to true, add the new line to the file
+                if(update){
+                    wholeDocument += newline + "\n";
+                }
+                //if update is set to false, do nothing (just delete the existing line)
+            }
+           thisLine ++;
+        }
+        csvReader.close();
+
+        //Replace the CSV with the contents of wholeDocument;
+        FileWriter csvWriter = new FileWriter(filePath,false);
+        csvWriter.write(wholeDocument);
+        csvWriter.flush();
+        csvWriter.close();
+
+        return returnValue;
+    }
+
+    //Update and Delete both call udHelper to do the hard work
+    public Boolean update(String filePath, int lineToDelete, String Product_ID, String Quantity, String Wholesale_Cost, String Sale_Price, String Supplier_ID){
+        try{
+            return udHelper(filePath,lineToDelete,true,Product_ID+","+Quantity+","+Wholesale_Cost+","+Sale_Price+","+Supplier_ID);
+        } catch(IOException ie) {
+            return false;
+        }
+    }
+
+    public Boolean delete(String filePath, int lineToDelete) throws IOException{
+        try{
+            return udHelper(filePath,lineToDelete,false,"");
+        } catch(IOException ie) {
+            return false;
+        }
+>>>>>>> main
     }
 
 }
