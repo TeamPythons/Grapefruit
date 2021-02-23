@@ -1,0 +1,57 @@
+:root {
+    --lightgrape: #bd94ba;
+    --darkgrape: #370f49;
+    --black: #000000;
+    --greengrape:#356e53;
+  }
+
+
+  .light-theme {
+    --fontColor: var(--lightgrape);
+    --bg: var(--darkgrape);
+  }
+
+  
+  .dark-theme {
+    --bg: var(--black);
+    --fontColor: var(--greengrape);
+  }
+
+  * {
+    color: var(--fontColor);
+    font-family: helvetica;
+  }
+  
+  body {
+      background: var(--bg);
+  }
+
+ul {
+    font-family: 'Courier New';
+}
+
+li {
+    list-style: circle;
+  }
+  
+  .list {
+    list-style: square;
+  }
+  
+  #msg {
+    font-family: monospace;
+  }
+
+  .btn {
+    position: absolute;
+    top: 20px;
+    left: 250px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    border: none;
+    color: var(--lightgrape);
+    background-color: var(--black);
+  }
+
+  .btn:focus { outline-style: none; }
