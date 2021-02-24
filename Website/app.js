@@ -32,6 +32,18 @@ function orderItem() {
     //entry.addEventListener('click', deleteItem, false);
 }
 
+
+
+function getInputValues(){
+    let nameValue = document.getElementById("name").value;  
+    let emailAddressValue = document.getElementById("emailAddress").value;
+    let shippingAddressValue = document.getElementById("shippingAddress").value;
+    alert(nameValue);
+    alert(emailAddressValue);
+    alert(shippingAddressValue);
+}
+
+
 //function deleteItem() {
 //    var itemToRemove = this.id;
 //    itemToRemove.parentNode.removeChild(itemToRemove);

@@ -26,11 +26,38 @@
         <h3>Your Fruit Basket (Shopping Cart):</h3>
         <ol id="cartList">
         </ol>
-      </div>
+      </div> 
 
     <div>
         <button class="btn">BUY</button>
+    </div>
+
+    <h1>Confirmation Page</h1>
+    <form action="index.html" method="GET" class="submissionForm">
+      
+      <div class="box">
+        <!--This is the Label for the First Name input-->
+        <label for="yourName">Your Name:</label>
+        <input type="text" name="name" id="name"><br>
       </div>
+
+      <div class="box">
+        <!--This is the label for the Email Address input-->
+        <label for="emailAddress">Email Address:</label>
+        <input type="email" name="emailAddress" id="emailAddress"><br>
+      </div>
+
+      <div class="box">
+        <!--This is the label for the Shipping Address input-->
+        <label for="shippingAddress">Shipping Address:</label>
+        <input type="text" name="shippingAddress" id="shippingAddress"><br>
+      </div>
+
+      <button type="button" onclick="getInputValues();" id="getValues">Get Values</button>
+      <input type="submit" name="submit" id="submit">
+      <script src="app.js"></script>
+
+    </form>
 
     <script src="app.js"></script>
     <noscript>You need to enable JavaScript to view the full site.</noscript>
