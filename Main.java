@@ -1,17 +1,13 @@
 import java.io.*;
-<<<<<<< HEAD
 import java.util.Scanner;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-=======
->>>>>>> main
 
 public class Main {
         public static void main(String[] args) throws IOException {
         String filePath = "inventory_team2.csv";
-<<<<<<< HEAD
         crud db = new crud();
         Scanner scan = new Scanner(System.in);
         Boolean loop = true;
@@ -137,12 +133,10 @@ public class Main {
             
             
         }
-=======
         CRUD crud = new CRUD(filePath);
         crud.read(crud.filePath);
         crud.create(crud.filePath,"testproduct","1234","5678","9ABC","6969");
         crud.update(crud.filePath,3,"AAA","AAA","AAA","AAA","AAA");
         crud.delete(crud.filePath,2);
->>>>>>> main
     }
 }

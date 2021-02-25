@@ -1,79 +1,40 @@
-import java.sql.*;
 
-
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Sql_Connection {
-   // JDBC driver name and database URL
-   static final String JDBC_DRIVER = "C:\\Users\jg528\OneDrive\Desktop\cs3250\Grapefruit\sqljdbc_9.2";  
-   static final String DB_URL = "jdbc:sqlserver://grapefruit-mango-s1.database.windows.net:1433;database=Grapefruit;user=GrapeAdmin@grapefruit-mango-s1;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 
-   //  Database credentials
-   static final String USER = "GrapeAdmin";
-   static final String PASS = "TreeRockCar2021";
-   
-   public static void main(String[] args) {
-   Connection conn = null;
-   Statement stmt = null;
-   try{
-      //STEP 2: Register JDBC driver
-      Class.forName("C:\Users\jg528\OneDrive\Desktop\cs3250\Grapefruit\sqljdbc_9.2");
+    // Connect to your database.
+    // Replace server name, username, and password with your credentials
+    public static void main(String[] args) {
+        String connectionUrl =
+                "jdbc:sqlserver://grapefruit-mango-s1.database.windows.net:1433;"
+                + "database=Grapefruit;"
+                + "user=GrapeAdmin@grapefruit-mango;"
+                + "password=TreeRockCar2021;"
+                + "encrypt=true;"
+                + "trustServerCertificate=false;"
+                + "loginTimeout=30;";
 
-      //STEP 3: Open a connection
-      System.out.println("Connecting to database...");
-      conn = DriverManager.getConnection(DB_URL,USER,PASS);
+        ResultSet resultSet = null;
 
-      //STEP 4: Execute a query
-      System.out.println("Creating statement...");
-      stmt = conn.createStatement();
-      String sql;
-      sql = "SELECT id, first, last, age FROM Employees";
-      ResultSet rs = stmt.executeQuery(sql);
+        try (Connection connection = DriverManager.getConnection(connectionUrl);
+                Statement statement = connection.createStatement();) {
 
-      //STEP 5: Extract data from result set
-      while(rs.next()){
-         //Retrieve by column name
-         int id  = rs.getInt("id");
-         int age = rs.getInt("age");
-         String first = rs.getString("first");
-         String last = rs.getString("last");
+            // Create and execute a SELECT SQL statement.
+            String selectSql = "SELECT TOP 10 Title, FirstName, LastName from SalesLT.Customer";
+            resultSet = statement.executeQuery(selectSql);
 
-         //Display values
-         System.out.print("ID: " + id);
-         System.out.print(", Age: " + age);
-         System.out.print(", First: " + first);
-         System.out.println(", Last: " + last);
-      }
-      //STEP 6: Clean-up environment
-      rs.close();
-      stmt.close();
-      conn.close();
-   }catch(SQLException se){
-      //Handle errors for JDBC
-      se.printStackTrace();
-   }catch(Exception e){
-      //Handle errors for Class.forName
-      e.printStackTrace();
-   }finally{
-      //finally block used to close resources
-      try{
-         if(stmt!=null)
-            stmt.close();
-      }catch(SQLException se2){
-      }// nothing we can do
-      try{
-         if(conn!=null)
-            conn.close();
-      }catch(SQLException se){
-         se.printStackTrace();
-      }//end finally try
-   }//end try
-   System.out.println("Goodbye!");
-}//end main
-}//end FirstExample
-
-
-
-
-
-
-
+            // Print results from select statement
+            while (resultSet.next()) {
+                System.out.println(resultSet.getString(2) + " " + resultSet.getString(3));
+            }
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+}

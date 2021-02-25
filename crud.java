@@ -87,11 +87,8 @@ public class crud {
             supplierID.add(values[4]);
         }
         csvReader.close();
-<<<<<<< HEAD
     }
-=======
         sc.close();
->>>>>>> main
 
     public void save(String filePath) throws IOException{
         //Write the contents of each ArrayList into a new csv file
@@ -105,7 +102,6 @@ public class crud {
         csvWriter.close();
     }
 
-<<<<<<< HEAD
     public void delete(int index){
         productID.remove(index);
         quantity.remove(index);
@@ -142,7 +138,6 @@ public class crud {
         }
 
         return searchResults;
-=======
     private Boolean udHelper(String filePath, int lineToChange, Boolean update, String newline) throws IOException{
         //Helper function that can either Update (when update = true) OR Delete (when update = false)
         BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
@@ -191,7 +186,6 @@ public class crud {
         } catch(IOException ie) {
             return false;
         }
->>>>>>> main
     }
 
 }
