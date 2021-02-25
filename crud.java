@@ -138,6 +138,7 @@ public class crud {
         }
 
         return searchResults;
+    }
     private Boolean udHelper(String filePath, int lineToChange, Boolean update, String newline) throws IOException{
         //Helper function that can either Update (when update = true) OR Delete (when update = false)
         BufferedReader csvReader = new BufferedReader(new FileReader(filePath));
