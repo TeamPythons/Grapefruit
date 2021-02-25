@@ -55,3 +55,40 @@ li {
   }
 
   .btn:focus { outline-style: none; }
+  
+  h1{
+    text-align: center;
+  }
+
+  .submissionForm{
+    max-width: 320px;
+    margin: 2rem auto;
+    border: 0px 
+  }
+  
+  .box{
+    padding: 20px;
+    margin: 10px;
+    border: 2px solid black;
+    border-radius: 10px;;
+    box-sizing: border-box;
+  }
+
+  label{
+    position: relative;
+    bottom: 3px;
+    color: #e7f0ec
+  }
+
+  #submit, #getValues{
+    background-color: #811ca0; /* Green */
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
+
