@@ -13,7 +13,7 @@ public class Sql_Connection {
         String connectionUrl =
                 "jdbc:sqlserver://grapefruit-mango-s1.database.windows.net:1433;"
                 + "database=Grapefruit;"
-                + "user=GrapeAdmin@grapefruit-mango;"
+                + "user=GrapeAdmin;"
                 + "password=TreeRockCar2021;"
                 + "encrypt=true;"
                 + "trustServerCertificate=false;"
@@ -21,9 +21,13 @@ public class Sql_Connection {
 
         ResultSet resultSet = null;
 
+        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
         try (Connection connection = DriverManager.getConnection(connectionUrl);
                 Statement statement = connection.createStatement();) {
-
+            
+                    
+            
             // Create and execute a SELECT SQL statement.
             String selectSql = "SELECT TOP 10 Title, FirstName, LastName from SalesLT.Customer";
             resultSet = statement.executeQuery(selectSql);
