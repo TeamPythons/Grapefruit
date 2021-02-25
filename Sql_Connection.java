@@ -21,7 +21,7 @@ public class Sql_Connection {
 
         ResultSet resultSet = null;
 
-        Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        
 
         try (Connection connection = DriverManager.getConnection(connectionUrl);
                 Statement statement = connection.createStatement();) {
