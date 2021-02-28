@@ -1,18 +1,13 @@
 'use strict'
 var x= [];
-const switcher = document.querySelector('.btn');
+const buyButton = document.querySelector('.btn');
 
-switcher.addEventListener('click', function() {
-    document.body.classList.toggle('dark-theme')
 
-    var className = document.body.className;
-    if(className == "light-theme") {
-        this.textContent = "Dark";
-    }
-    else {
-        this.textContent = "Light";
-    }
-
+//Click Buy Button
+buyButton.addEventListener('click', function() {
+    //JSON.stringify(x)
+    localStorage.setItem('shoppingCart', x);
+    window.location.href = "checkout.html";
 });
 
 var lis = document.getElementById("prodList").getElementsByTagName('li');
@@ -29,6 +24,7 @@ function orderItem() {
     var entry = document.createElement('li');
     entry.appendChild(document.createTextNode(itemName));
     list.appendChild(entry);
+    x.push(itemName);
     //entry.addEventListener('click', deleteItem, false);
 }
 

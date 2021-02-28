@@ -1,96 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GrapeWeb v1.0</title>
-    <link rel="stylesheet" href="main.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="main.css">
+
 </head>
-<body class = "light-theme">
-    <h1>GrapeWeb</h1>
+<body>
 
-    <!--Product List-->
-    <div id="products">
-        <h3>Products Available</h3>
-        <ol id="prodList">
-          <li>small grapefruit</li>
-          <li>medium grapefruit</li>
-          <li>large grapefruit</li>
-          <li>human</li>
-        </ol>
-      </div>
+<h2>GrapeWeb 1.1</h2>
+<p>All Grapefruits, All the Time.</p>
+<!--Product List-->
+<div id="products">
+  <h3>Products Available</h3>
+  <ol id="prodList">
+    <li>small grapefruit</li>
+    <li>medium grapefruit</li>
+    <li>large grapefruit</li>
+    <li>human</li>
+  </ol>
+</div>
 
-    <!--Shopping Cart-->
-    <div id="cart">
-        <h3>Your Fruit Basket (Shopping Cart):</h3>
-        <ol id="cartList">
-        </ol>
-      </div> 
+<!--Shopping Cart-->
+<div id="cart">
+  <h3>Your Fruit Basket (Shopping Cart):</h3>
+  <ol id="cartList">
+  </ol>
+</div>
 
-    <div>
-        <button class="btn">BUY</button>
-    </div>
+<div>
+  <button class="btn">BUY</button>
+</div>
 
-    <h1>Confirmation Page</h1>
-    <form action="index.html" method="GET" class="submissionForm">
-      
-      <div class="box">
-        <!--This is the Label for the First Name input-->
-        <label for="yourName">Your Name:</label>
-        <input type="text" name="name" id="name"><br>
-      </div>
-
-      <div class="box">
-        <!--This is the label for the Email Address input-->
-        <label for="emailAddress">Email Address:</label>
-        <input type="email" name="emailAddress" id="emailAddress"><br>
-      </div>
-
-      <div class="box">
-        <!--This is the label for the Shipping Address input-->
-        <label for="shippingAddress">Shipping Address:</label>
-        <input type="text" name="shippingAddress" id="shippingAddress"><br>
-      </div>
-
-      <button type="button" onclick="getInputValues();" id="getValues">Get Values</button>
-      <input type="submit" name="submit" id="submit">
-      <script src="app.js"></script>
-
-    </form>
-
-    <script src="app.js"></script>
-    <noscript>You need to enable JavaScript to view the full site.</noscript>
+<script src="app.js"></script>
+<noscript>You need to enable JavaScript to view the full site.</noscript>
 
 
+<p>Checkout <a href="checkout.html">Link</a></p>
 
- <!--
-    <form id="formAddInfo">
-        <fieldset>
-          <legend>Add Personal Info </legend>
-              <label for="shippingAddress">Shipping Address</label>
-              <input type="text" id="firstName" name="firstName" />
-  
-          <button>Add</button>
-        </fieldset>
-      </form>
-  
-        <ol id="demo"></ol>
-  
-  <script>
-      var list = document.getElementById('demo');
-      var entry = document.getElementById('formAddName');
-      entry.onsubmit = function(evt) {
-      evt.preventDefault();
-      var firstName = document.getElementById('firstName').value;
-      var entry = document.createElement('li');
-      entry.appendChild(document.createTextNode(firstName));
-      list.appendChild(entry);
-    }
-  </script>
--->
-
-  </body>
+</body>
 </html>
-
-
