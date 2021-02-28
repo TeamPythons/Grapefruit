@@ -1,3 +1,5 @@
+// accidently hard pushed into main, this comment is a change. please review and if errors we can revert
+
 import java.util.Scanner;
 
 public class Main {
@@ -5,6 +7,7 @@ public class Main {
         //testing the drivers will go in here
         
         SQLDatabaseConnection sqlDriver = new SQLDatabaseConnection();
+        System.out.println("hellp");
 
         sqlDriver.mainSqlDriver(readStringCreator());
 
