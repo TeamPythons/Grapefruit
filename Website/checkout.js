@@ -1,7 +1,9 @@
 window.addEventListener('load', () => {
+    //On window load, populate shopping cart
     const params = (new URL(document.location)).searchParams;
     const name = params.get('name');
     const x = localStorage.getItem('shoppingCart');
+    const ids = localStorage.getItem('productId');
     const cost = localStorage.getItem('cost');
     const shoppingCartList = x.split(",");
 
@@ -14,7 +16,8 @@ window.addEventListener('load', () => {
         //element.insertAdjacentHTML('<span class="price" id="Price" style="color:black"><b>$0</b></span></p>');
     }
 
-    document.getElementById('shopping-cart').innerHTML = x;
+
+    //document.getElementById('shopping-cart').innerHTML = x;
     document.getElementById('Price').textContent = "$"+cost.toString();
 
 })

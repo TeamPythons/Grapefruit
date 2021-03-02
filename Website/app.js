@@ -1,25 +1,46 @@
-'use strict'
+
 var x= [];
+var ids = [];
 const buyButton = document.querySelector('.btn');
-var cost = 0;
-var prices = [10,5,15,25];
-var items = ["Grapefruit","Grape","Eggplant","Durian"];
+const NAME=0;
+const COST=1;
+const PRODUCT_ID=2;
+var costTotal = 0;
+
+//All the products are stored here
+const itemGrid = [["Grapefruit",10,00000000],["Grape",5,00000001],["Eggplant",15,00000002],["Durian",25,00000003]];
+
+//Populate product list
+window.addEventListener('load', () => {
+    for(var i = 0; i < itemGrid.length; i++){
+        var list = document.getElementById('prodList');
+        var itemName = itemGrid[i][NAME]+" $"+itemGrid[i][COST].toString();
+        var entry = document.createElement('li');
+        entry.appendChild(document.createTextNode(itemName));
+        list.appendChild(entry);
+    }
+
+    console.log("Loaded");
+    var lis = document.getElementById("prodList").getElementsByTagName('li');
+
+    for (var i=0; i<lis.length; i++) {
+        lis[i].addEventListener('click', orderItem, false);
+    }
+})
+
 
 //Click Buy Button
 buyButton.addEventListener('click', function() {
     //JSON.stringify(x)
     localStorage.setItem('shoppingCart', x);
-    localStorage.setItem('cost', cost);
+    localStorage.setItem('cost', costTotal);
+    localStorage.setItem('productId',ids);
     window.location.href = "checkout.html";
 });
 
-var lis = document.getElementById("prodList").getElementsByTagName('li');
-
-for (var i=0; i<lis.length; i++) {
-    lis[i].addEventListener('click', orderItem, false);
-}
 
 function getElementIndex(node) {
+    //Returns the number of an element in a list
     var index = 0;
     while ( (node = node.previousElementSibling) ) {
         index++;
@@ -28,20 +49,22 @@ function getElementIndex(node) {
 }
 
 function orderItem() {
-
+    //Add the item to the Shopping Cart and the lists X and ID'S which get stored in memory for checkout
     var selectedItem = this.textContent;
     var list = document.getElementById('cartList');
     var itemName = this.textContent;
     var itemIndex = getElementIndex(this);
-    var itemPrice = prices[itemIndex];
-    cost += itemPrice;
+    var itemPrice = itemGrid[itemIndex][COST];
+    var itemID = itemGrid[itemIndex][PRODUCT_ID];
+    costTotal += itemPrice;
     var p = document.getElementById("Price");
-    p.textContent = "$"+cost.toString();
+    p.textContent = "$"+costTotal.toString();
 
     var entry = document.createElement('li');
     entry.appendChild(document.createTextNode(itemName));
     list.appendChild(entry);
     x.push(itemName);
+    ids.push(itemID);
     //entry.addEventListener('click', deleteItem, false);
 }
 
