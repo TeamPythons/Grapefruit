@@ -10,32 +10,41 @@
 <h2>GrapeWeb 1.1</h2>
 <p>All Grapefruits, All the Time.</p>
 <!--Product List-->
-<div id="products">
-  <h3>Products Available</h3>
-  <ol id="prodList">
-    <li>small grapefruit</li>
-    <li>medium grapefruit</li>
-    <li>large grapefruit</li>
-    <li>human</li>
-  </ol>
-</div>
+<div class="row">
+  <div class="col-75">
+    <div id="products">
+      <h3>Products Available</h3>
+      <ol id="prodList">
+        <!--This will be filled by app.js when the form loads-->
+      </ol>
+    </div>
+  </div>
 
-<!--Shopping Cart-->
-<div id="cart">
-  <h3>Your Fruit Basket (Shopping Cart):</h3>
-  <ol id="cartList">
-  </ol>
-</div>
 
-<div>
-  <button class="btn">BUY</button>
-</div>
 
+  <div>
+    <button class="btn">BUY</button>
+  </div>
+
+  <div class="col-25">
+      <!--Sample Item
+      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b> </span></h4>
+      <hr>
+      -->
+      <!--Shopping Cart-->
+    <div class = "container" id="cart">
+      <h3>Your Fruit Basket (Shopping Cart):</h3>
+      <ol id="cartList">
+      </ol>
+    </div>
+    <div class="container" id=shoppingTotal>
+      <p>Total <span class="price" id="Price" style="color:black"><b>$0</b></span></p>
+    </div>
+  </div>
+  </div>
+</div>
 <script src="app.js"></script>
 <noscript>You need to enable JavaScript to view the full site.</noscript>
-
-
-<p>Checkout <a href="checkout.html">Link</a></p>
 
 </body>
 </html>
