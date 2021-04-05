@@ -11,16 +11,27 @@
 <p>All Grapefruits, All the Time.</p>
 <img src="images/Grapefruit.gif">
 
-<p>Example Servlet Files:
-  <ul>
-  <li>To a <a href="hello.jsp">JSP page</a>.
-  <li>To a <a href="hello">servlet</a>.
-  </ul>
-
-
-<!--Product List-->
+<h3>Products Available</h3>
 <div class="row">
-  <div class="col-75">
+  <div class="col-50">
+    <div class="container">
+      <form action="index.html" method="POST" target="_blank">
+        Search By:
+        <select name = "dropdown">
+          <option value = "productID" selected>Product ID</option>
+          <option value = "sellerID">Seller ID</option>
+          <option value = "retailPrice">Price Less Than</option>
+      </select>
+      <br> 
+        <input type="text" name="SearchInput" width="25" Value="Type your search here"> 
+        <input type="Submit" value="Search" class = "searchButton"> 
+        </form>  
+      </div>
+    </div>
+
+
+  <!--Product List-->
+  <div class="col-25">
     <div id="products">
       <h3>Products Available</h3>
       <ol id="prodList">
@@ -28,8 +39,6 @@
       </ol>
     </div>
   </div>
-
-
 
   <div>
     <button class="btn">BUY</button>
@@ -41,6 +50,7 @@
       <hr>
       -->
       <!--Shopping Cart-->
+      <br> <br>
     <div class = "container" id="cart">
       <h3>Your Fruit Basket (Shopping Cart):</h3>
       <ol id="cartList">
@@ -50,8 +60,8 @@
       <p>Total <span class="price" id="Price" style="color:black"><b>$0</b></span></p>
     </div>
   </div>
-  </div>
 </div>
+
 <script src="app.js"></script>
 <noscript>You need to enable JavaScript to view the full site.</noscript>
 

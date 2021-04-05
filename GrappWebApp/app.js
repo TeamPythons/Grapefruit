@@ -2,16 +2,18 @@
 var x= [];
 var ids = [];
 const buyButton = document.querySelector('.btn');
+const searchButton = document.querySelector('.searchButton');
 const NAME=0;
 const COST=1;
 const PRODUCT_ID=2;
 var costTotal = 0;
 
 //All the products are stored here
+
 const itemGrid = [["Grapefruit",10,00000000],["Grape",5,00000001],["Eggplant",15,00000002],["Durian",25,00000003]];
 
 //Populate product list
-window.addEventListener('load', () => {
+searchButton.addEventListener('click', function() {
     for(var i = 0; i < itemGrid.length; i++){
         var list = document.getElementById('prodList');
         var itemName = itemGrid[i][NAME]+" $"+itemGrid[i][COST].toString();
