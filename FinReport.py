@@ -164,5 +164,4 @@ def finReport():
     return print( prodID),print(salePrice),print(totalOrder),print(totalDollar),print(custEmail)
 
 
-if __name__ == '__main__':
-    finReport()
+
