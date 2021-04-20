@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  
+  {%load static%}
+  <link rel="stylesheet" href="{% static 'polls/main.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1"
+
+</head>
+<body>
+
+<h2>GrapeWeb 1.1</h2>
+<p>All Grapefruits, All the Time.</p>
+
+<h3>Products Available</h3>
+<div class="row">
+  <div class="col-75">
+    <div class="container">
+      <!--Here is the form that starts the search query-->
+      <form name='searchForm' method="GET" >
+
+        Search By:
+        <select name = "dropdown">
+          <option value = "productID" selected>Product ID</option>
+          <option value = "sellerID">Seller ID</option>
+          <option value = "retailPrice">Price Less Than</option>
+        </select>
+        <br> 
+        <input type="text" name="searchQuery" width="25" Value="Type your search here"> 
+        <input type="submit" value="Search" class = "searchButton"> 
+      </form>  
+    </div>
+  </div>
+
+
+  <!--Product List-->
+  <div class="col-25">
+    <div id="products">
+      <h3>Search Results</h3>
+      <ol id="prodList">
+        <!--This will be filled FROM THE DATABASE!!!-->
+        {% if latest_inventory_list %}
+            <ul>
+            {% for question in latest_inventory_list %}
+          <li onmousedown="orderItem();">{{ question.product_id }} - ${{question.retail_cost}} 
+
+          </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>No results.</p>
+        {% endif %}
+        
+      </ol>
+    </div>
+ 
+    <div class="col-50">
+      <button type="button" class="btn">
+        <a href="{% url 'checkout' %}">Checkout</a>
+      </button>
+    </div>
+  </div>
+  <div class="break"></div>
+  <div class="col-25">
+      <!--Sample Item
+      <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>4</b> </span></h4>
+      <hr>
+      -->
+      <!--Shopping Cart-->
+      <br> <br>
+    <div class = "container" id="cart">
+      <h3>Your Fruit Basket (Shopping Cart):</h3>
+      <ol id="cartList">
+      </ol>
+    </div>
+    <div class="container" id=shoppingTotal>
+      <p>Total <span class="price" id="Price" style="color:black"><b>$0</b></span></p>
+    </div>
+  </div>
+</div>
+
+
+<script src="{% static 'polls/app.js' %}"></script>
+<noscript>You need to enable JavaScript to view the full site.</noscript>
+
+</body>
+</html>
