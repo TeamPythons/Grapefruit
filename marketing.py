@@ -14,15 +14,13 @@ def marketingData():
     database = 'Grapefruit'
     username = 'GrapeAdmin'
 
-
     print("Please enter the password:")
     password = getpass()
-
 
     cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
     cursor = cnxn.cursor()
     print("Database Connection Established Succesfully...")
-    #build time delta loop for 3 month time series
+    # build time delta loop for 3 month time series
     startTime = input("what date do you want ot start 'YYYY-MM-DD'")
 
     parseTime =datetime.strptime(startTime,'%Y-%m-%d')
@@ -30,20 +28,12 @@ def marketingData():
     dateList = []
     totalSales = []
 
-
     while(i>=0):
-
 
         parseTime = (parseTime - timedelta(days=7))
         deltaTime =parseTime.strftime('%Y-%m-%d')
 
-
-
-
-
-
         # create virtual table for specific range
-
 
         cursor.execute(f"""
             CREATE VIEW temp_table 
@@ -76,10 +66,7 @@ def marketingData():
         for data in datas:
             salestemp = round(((data[0])*(data[1]) + salestemp),2)
 
-
-
         cnxn.commit()
-
 
         cursor.execute("""DROP VIEW [dbo].[temp_table]
         """)
