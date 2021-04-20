@@ -106,9 +106,9 @@ def finReport():
         }]
 
         myLayout = {
-            'title': "Grapefruit Finance Report",
+            'title': "Grapefruit Marketing Report: Top Customers",
             'titlefont': {'size': 28},
-            'xaxis': {'title': 'Week beginning with',
+            'xaxis': {'title': 'Customer Email (Hover for Total Orders)',
                       'titlefont': {'size': 24},
                       'tickfont': {'size': 14},
                       },
@@ -119,13 +119,16 @@ def finReport():
         offline.plot(fig, filename=f"GrapeFruitFinance_topCusties_{timeChoice}.html")
 
     elif finChoice == '2':
-        cursor.execute(f"""SELECT TOP({numResults}) product_id,sale_price,
-               SUM([product_quantity]) AS product_count
-          FROM dbo.temp_table
-          WHERE [date] >= '{deltaTime}' AND
-                [date]   <= '{parseTime}' 
-         GROUP BY product_id,sale_price
-         ORDER BY product_count DESC
+        cursor.execute(f"""
+        SELECT TOP({numResults}) customer_orders_team2.product_id,sale_price,
+        SUM([product_quantity]) AS product_count
+        FROM (inventory_team2
+        INNER JOIN customer_orders_team2 ON customer_orders_team2.product_id = inventory_team2.product_id
+        )
+        WHERE [date] >= '{deltaTime}' AND
+        [date]   <= '{userDateChoice}' 
+        GROUP BY customer_orders_team2.product_id,sale_price
+        ORDER BY product_count DESC
             """)
         datas = cursor.fetchall()
         for data in datas:
@@ -149,16 +152,17 @@ def finReport():
         myLayout = {
             'title': "Grapefruit Finance Report",
             'titlefont': {'size': 28},
-            'xaxis': {'title': 'Week beginning with',
+            'xaxis': {'title': 'Procuct ID',
                       'titlefont': {'size': 24},
                       'tickfont': {'size': 14},
                       },
-            'yaxis': {'title': "Sales in $"},
+            'yaxis': {'title': "Total Products Sold"},
         }
 
         fig = {'data': dataViz, 'layout': myLayout}
         offline.plot(fig, filename=f"GrapeFruitMarketing_topProducts_{timeChoice}.html")
     return print( prodID),print(salePrice),print(totalOrder),print(totalDollar),print(custEmail)
+
 
 if __name__ == '__main__':
     finReport()
