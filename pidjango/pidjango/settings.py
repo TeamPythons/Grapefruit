@@ -76,16 +76,16 @@ WSGI_APPLICATION = 'pidjango.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'sql_server.pyodbc',
         'NAME': 'Grapefruit',
-	'USER': 'GrapeAdmin',
-	'PASSWORD': 'TreeRockCar2021',
-	'HOST': 'tcp:grapefruit-mango-s1.database.windows.net',
-	'PORT': '1433'
-	#'OPTIONS': [
-	#	'driver': 'ODBC Driver for 13 SQL Server',
-	#	'unicode_results': True,
-	#]
+        'USER': 'GrapeAdmin',
+        'PASSWORD': 'TreeRockCar2021',
+        'HOST': 'tcp:grapefruit-mango-s1.database.windows.net',
+        'PORT': '1433',
+        'OPTIONS':{
+            'driver': 'ODBC Driver 17 for SQL Server',
+            'MARS_Connection': 'True',
+        }
     }
 }
 
