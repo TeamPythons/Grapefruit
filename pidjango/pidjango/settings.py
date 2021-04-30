@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -31,13 +31,15 @@ ALLOWED_HOSTS = ["127.0.0.1:8000",'localhost','localhost:8000']
 # Application definition
 
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig', #This is my polls app
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles', 
+
+    'store.apps.StoreConfig',
+
 ]
 
 MIDDLEWARE = [
@@ -76,16 +78,16 @@ WSGI_APPLICATION = 'pidjango.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'sql_server.pyodbc',
         'NAME': 'Grapefruit',
-	'USER': 'GrapeAdmin',
-	'PASSWORD': 'TreeRockCar2021',
-	'HOST': 'tcp:grapefruit-mango-s1.database.windows.net',
-	'PORT': '1433'
-	#'OPTIONS': [
-	#	'driver': 'ODBC Driver for 13 SQL Server',
-	#	'unicode_results': True,
-	#]
+        'USER': 'GrapeAdmin',
+        'PASSWORD': 'TreeRockCar2021',
+        'HOST': 'tcp:grapefruit-mango-s1.database.windows.net',
+        'PORT': '1433',
+        'OPTIONS':{
+            'driver': 'ODBC Driver 17 for SQL Server',
+            'MARS_Connection': 'True',
+        }
     }
 }
 
@@ -128,7 +130,13 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
+
+MEDIA_URL = '/images/'
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
