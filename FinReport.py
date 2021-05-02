@@ -9,17 +9,8 @@ from getpass import getpass
 
 def finReport():
     # sql connection
-    server = 'tcp:grapefruit-mango-s1.database.windows.net'
-    database = 'Grapefruit'
-    username = 'GrapeAdmin'
-
-    print("Please enter the password:")
-    password = getpass()
-
-    cnxn = pyodbc.connect(
-        'DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server + ';DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
+    cnxn = Cnxn()
     cursor = cnxn.cursor()
-    print("Database Connection Established Succesfully...")
 
     # Gather info from user to build correct sql query
     finChoice = input("Would you like to see\n[1] Best Customers\n[2] Best Products? ")

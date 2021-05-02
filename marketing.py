@@ -4,28 +4,21 @@ from plotly import offline
 from datetime import datetime,timedelta
 import numpy as np
 from getpass import getpass
+from Cnxn import Cnxn
 
 
 
 def marketingData():
     # run sql to collect data then display using matplotlib
 
-    server = 'tcp:grapefruit-mango-s1.database.windows.net'
-    database = 'Grapefruit'
-    username = 'GrapeAdmin'
 
-
-    print("Please enter the password:")
-    password = getpass()
-
-
-    cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
+    cnxn = Cnxn()
     cursor = cnxn.cursor()
-    print("Database Connection Established Succesfully...")
+
     #build time delta loop for 3 month time series
     startTime = input("what date do you want ot start 'YYYY-MM-DD'")
 
-    parseTime =datetime.strptime(startTime,'%Y-%m-%d')
+    parseTime = datetime.strptime(startTime ,'%Y-%m-%d')
     i = 12
     dateList = []
     totalSales = []
@@ -128,7 +121,10 @@ def marketingData():
     fig = {'data':dataViz,'layout':myLayout}
     offline.plot(fig, filename=f"GrapeFruitMarketing_{startTime}.html")
 
-    return print(totalSales),print(dateList),print(changeSales),
+    return print(totalSales), print(dateList), print(changeSales)
+
+if __name__ == '__main__':
+    marketingData()
 
 
 
