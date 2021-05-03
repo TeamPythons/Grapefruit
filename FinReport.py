@@ -13,13 +13,13 @@ def finReport():
     database = 'Grapefruit'
     username = 'GrapeAdmin'
 
-    print("Please enter the password:")
+    print("Please enter the password: \n")
     password = getpass()
 
     cnxn = pyodbc.connect(
         'DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server + ';DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
     cursor = cnxn.cursor()
-    print("Database Connection Established Succesfully...")
+    print("Database Connection Established Succesfully...\n")
 
     # Gather info from user to build correct sql query
     finChoice = input("Would you like to see\n[1] Best Customers\n[2] Best Products? ")
@@ -33,8 +33,8 @@ def finReport():
                        "[3] Monthly")
     if timeChoice != '1' or '2' or '3':
         print('invalid entry')
-    userDateChoice = input("please enter the date to generate report in YYYY-MM-DD Format")
-    numResults = input("How many results would you like to see")
+    userDateChoice = input("Please enter the date to generate report in YYYY-MM-DD Format: \n")
+    numResults = input("How many results would you like to see?")
     numResults = str(numResults)
     parseTime = datetime.strptime(userDateChoice, '%Y-%m-%d')
 
@@ -66,16 +66,16 @@ def finReport():
             (
                 SElECT
                     customer_orders_team2.cust_email,
-                    COUNT(DISTINCT customer_orders_team2.product_quantity) 
+                    COUNT(DISTINCT customer_orders_team2.product_quantity)
                     AS total_orders
                 FROM customer_orders_team2
                 WHERE [date] >= '{deltaTime}' AND
-                        [date]   <= '{userDateChoice}' 
+                        [date]   <= '{userDateChoice}'
                 GROUP BY customer_orders_team2.cust_email
             ) AS sub1
             INNER JOIN
             (
-                SELECT 
+                SELECT
                     customer_orders_team2.cust_email,
                     SUM(customer_orders_team2.product_quantity*inventory_team2.sale_price)
                         AS total_dollar
@@ -84,7 +84,7 @@ def finReport():
                 GROUP BY customer_orders_team2.cust_email
             ) AS sub2
             ON sub1.cust_email = sub2.cust_email
-                ORDER by sub2.total_dollar DESC       
+                ORDER by sub2.total_dollar DESC
                               """)
         datas = cursor.fetchall()
         for data in datas:
@@ -126,7 +126,7 @@ def finReport():
         INNER JOIN customer_orders_team2 ON customer_orders_team2.product_id = inventory_team2.product_id
         )
         WHERE [date] >= '{deltaTime}' AND
-        [date]   <= '{userDateChoice}' 
+        [date]   <= '{userDateChoice}'
         GROUP BY customer_orders_team2.product_id,sale_price
         ORDER BY product_count DESC
             """)
@@ -162,6 +162,3 @@ def finReport():
         fig = {'data': dataViz, 'layout': myLayout}
         offline.plot(fig, filename=f"GrapeFruitMarketing_topProducts_{timeChoice}.html")
     return print( prodID),print(salePrice),print(totalOrder),print(totalDollar),print(custEmail)
-
-
-
