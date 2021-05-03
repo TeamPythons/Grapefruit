@@ -6,7 +6,7 @@ server = 'tcp:grapefruit-mango-s1.database.windows.net'
 database = 'Grapefruit'
 username = 'GrapeAdmin'
 
-print("Please enter the password:")
+print("Please Enter The Password:")
 password = getpass()
 
 cnxn = pyodbc.connect(
@@ -14,10 +14,10 @@ cnxn = pyodbc.connect(
 cursor = cnxn.cursor()
 
 def create():
-        date = input('Please enter date in YYYY-MM-DD format: ')
-        cust_email = input('Please enter customer email: ')
-        cust_location = input('Please enter customer location: ')
-        product_id = input('Please enter product ID: ')
+        date = input('Please enter the date in YYYY-MM-DD format: ')
+        cust_email = input('Please enter the customer email: ')
+        cust_location = input('Please enter the customer location: ')
+        product_id = input('Please enter the product ID: ')
         product_quantity = input('Please enter product quantity: \n')
         cursor.execute("""
             INSERT INTO dbo.customer_orders_team2 (date, cust_email, cust_location, product_id, product_quantity)
@@ -38,10 +38,3 @@ def create():
         cnxn.commit()
 
         return print("fetching data added from database.... "), print(f"\n{data} added to the database")
-
-
-
-
-
-
-

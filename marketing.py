@@ -21,9 +21,9 @@ def marketingData():
 
     cnxn = pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER='+server+';DATABASE='+database+';UID='+username+';PWD='+ password)
     cursor = cnxn.cursor()
-    print("Database Connection Established Succesfully...")
+    print("Database Connection Established Succesfully... \n")
     #build time delta loop for 3 month time series
-    startTime = input("what date do you want ot start 'YYYY-MM-DD'")
+    startTime = input("Please enter the start date for the report 'YYYY-MM-DD': ")
 
     parseTime =datetime.strptime(startTime,'%Y-%m-%d')
     i = 12
@@ -46,9 +46,9 @@ def marketingData():
 
 
         cursor.execute(f"""
-            CREATE VIEW temp_table 
+            CREATE VIEW temp_table
             AS
-            (SELECT customer_orders_team2.product_id, 
+            (SELECT customer_orders_team2.product_id,
             sale_price,
             product_quantity,
             cust_email,
@@ -129,9 +129,3 @@ def marketingData():
     offline.plot(fig, filename=f"GrapeFruitMarketing_{startTime}.html")
 
     return print(totalSales),print(dateList),print(changeSales)
-
-
-
-
-
-
