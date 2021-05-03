@@ -62,7 +62,7 @@ def marketingData():
         cnxn.commit()
 
         # Aggregate virtual table for finance opperations
-        data = cursor.execute("""
+        cursor.execute("""
         SELECT[sale_price], [product_quantity], product_id
         FROM
         dbo.temp_table
@@ -128,7 +128,10 @@ def marketingData():
     fig = {'data':dataViz,'layout':myLayout}
     offline.plot(fig, filename=f"GrapeFruitMarketing_{startTime}.html")
 
-    return print(totalSales),print(dateList),print(changeSales),
+    return print(totalSales),print(dateList),print(changeSales)
+
+if __name__ == '__main__':
+    marketingData()
 
 
 
