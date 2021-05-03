@@ -39,8 +39,7 @@ def create():
 
         return print("fetching data added from database.... "), print(f"\n{data} added to the database")
 
-if __name__ == '__main__':
-    create()
+
 
 
 

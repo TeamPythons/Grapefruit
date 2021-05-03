@@ -130,9 +130,6 @@ def marketingData():
 
     return print(totalSales),print(dateList),print(changeSales)
 
-if __name__ == '__main__':
-    marketingData()
-
 
 
 
