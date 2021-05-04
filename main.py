@@ -1,6 +1,9 @@
 import os
 from welcome import welcome
-import crud
+import create
+import read
+import update
+import delete
 from marketing import marketingData
 from FinReport import finReport
 
