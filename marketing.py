@@ -9,7 +9,6 @@ from getpass import getpass
 
 def marketingData():
     # run sql to collect data then display using matplotlib
-
     server = 'tcp:grapefruit-mango-s1.database.windows.net'
     database = 'Grapefruit'
     username = 'GrapeAdmin'

@@ -16,7 +16,7 @@ def update():
     cnxn = pyodbc.connect(
         'DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server + ';DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
     cursor = cnxn.cursor()
-    
+
     global user_input
     print("Please Select what value you would like to update in the database"
           "\n [1] Quantity"

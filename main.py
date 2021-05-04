@@ -9,7 +9,7 @@ from FinReport import finReport
 
 def main():
     while True:
-        os.system("clear")
+        os.system("cls")
         print(welcome("Grapefruit Database"))
         print("\n Please Select An Option: ")
         print("""
