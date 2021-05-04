@@ -37,7 +37,7 @@ def main():
             finReport()
         elif choice == '0':
             exit()
-        os.system("clear")
+        os.system("cls")
 
 if __name__ == "__main__":
     main()
