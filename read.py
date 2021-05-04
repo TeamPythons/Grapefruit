@@ -14,6 +14,7 @@ cnxn = pyodbc.connect(
 cursor = cnxn.cursor()
 
 def read():
+
     global user_input
     print("Please Select how you would like to search the database"
           "\n [1] Product ID"
