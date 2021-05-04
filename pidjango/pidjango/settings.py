@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles', 
 
     'store.apps.StoreConfig',
-
 ]
 
 MIDDLEWARE = [
@@ -78,16 +77,8 @@ WSGI_APPLICATION = 'pidjango.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'Grapefruit',
-        'USER': 'GrapeAdmin',
-        'PASSWORD': 'TreeRockCar2021',
-        'HOST': 'tcp:grapefruit-mango-s1.database.windows.net',
-        'PORT': '1433',
-        'OPTIONS':{
-            'driver': 'ODBC Driver 17 for SQL Server',
-            'MARS_Connection': 'True',
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
