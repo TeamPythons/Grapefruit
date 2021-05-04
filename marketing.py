@@ -128,4 +128,4 @@ def marketingData():
     fig = {'data':dataViz,'layout':myLayout}
     offline.plot(fig, filename=f"GrapeFruitMarketing_{startTime}.html")
 
-    return print(totalSales),print(dateList),print(changeSales)
+    return print("Report Generated")

@@ -14,15 +14,14 @@ cnxn = pyodbc.connect(
 cursor = cnxn.cursor()
 
 def create():
-        date = input('Please enter the date in YYYY-MM-DD format: ')
-        cust_email = input('Please enter the customer email: ')
-        cust_location = input('Please enter the customer location: ')
-        product_id = input('Please enter the product ID: ')
-        product_quantity = input('Please enter product quantity: \n')
-        cursor.execute("""
-            INSERT INTO dbo.customer_orders_team2 (date, cust_email, cust_location, product_id, product_quantity)
-            VALUES (?,?,?,?,?)""",
-            date, cust_email, cust_location, product_id, product_quantity)
+        prod_id = input('Please enter the date in YYYY-MM-DD format: ')
+        quant = input('Please enter the customer email: ')
+        wholesale = input('Please enter the customer location: ')
+        price = input('Please enter the product ID: ')
+        suplier = input('Please enter product quantity: \n')
+        cursor.execute(f"""
+            INSERT dbo.inventory_team2(product_id,quantity,wholesale_cost,sale_price,supplier_id)
+            VALUES ('{prod_id}',{quant},{wholesale},{price},'{suplier}')""")
         cnxn.commit()
 
         data = cursor.execute("""
