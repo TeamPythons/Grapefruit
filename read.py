@@ -46,7 +46,7 @@ def read():
     dataset = cursor.execute(f"""
         SELECT *
         FROM inventory_team2
-        WHERE {condition} = {user_input} """)
+        WHERE {condition} = '{user_input}' """)
 
     data = cursor.fetchall()
     print("product id-quantity-wholesale cost-sale price-supplier id")

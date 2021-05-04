@@ -161,4 +161,4 @@ def finReport():
 
         fig = {'data': dataViz, 'layout': myLayout}
         offline.plot(fig, filename=f"GrapeFruitMarketing_topProducts_{timeChoice}.html")
-    return print( prodID),print(salePrice),print(totalOrder),print(totalDollar),print(custEmail)
+    return print("Report Generated")
