@@ -1,6 +1,9 @@
 import os
 from welcome import welcome
-import crud
+import create
+import read
+import update
+import delete
 from marketing import marketingData
 from FinReport import finReport
 
@@ -34,7 +37,7 @@ def main():
             finReport()
         elif choice == '0':
             exit()
-        os.system("clear")
+        os.system("cls")
 
 if __name__ == "__main__":
     main()

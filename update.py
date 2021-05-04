@@ -1,19 +1,22 @@
 import pyodbc
 from getpass import getpass
 
-server = 'tcp:grapefruit-mango-s1.database.windows.net'
-database = 'Grapefruit'
-username = 'GrapeAdmin'
 
-print("Please enter the password:")
-password = getpass()
-
-cnxn = pyodbc.connect(
-    'DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server + ';DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
-cursor = cnxn.cursor()
 
 
 def update():
+
+    server = 'tcp:grapefruit-mango-s1.database.windows.net'
+    database = 'Grapefruit'
+    username = 'GrapeAdmin'
+
+    print("Please enter the password:")
+    password = getpass()
+
+    cnxn = pyodbc.connect(
+        'DRIVER={ODBC Driver 17 for SQL Server};SERVER=' + server + ';DATABASE=' + database + ';UID=' + username + ';PWD=' + password)
+    cursor = cnxn.cursor()
+    
     global user_input
     print("Please Select what value you would like to update in the database"
           "\n [1] Quantity"
@@ -60,11 +63,3 @@ def update():
         print(x)
 
     cnxn.commit()
-
-
-
-
-
-
-
-
